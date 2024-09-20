@@ -22,7 +22,9 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-    const { data, message, success } = response.data
+    if (response.data instanceof Blob) return response.data // 返回 Blob 对象
+
+    const { data, message, success } = response.data // 默认json格式
     if (success) {
       return data
     } else {

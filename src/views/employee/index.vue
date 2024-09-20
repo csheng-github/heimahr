@@ -26,7 +26,7 @@
         <el-row class="operate-tools" type="flex" justify="end">
           <el-button size="mini" type="primary">添加员工</el-button>
           <el-button size="mini">excel导入</el-button>
-          <el-button size="mini">excel导出</el-button>
+          <el-button size="mini" @click="exportEmployee">excel导出</el-button>
         </el-row>
         <el-table :data="list">
           <el-table-column prop="staffPhoto" align="center" label="头像">
@@ -72,7 +72,8 @@
 <script>
 import { transListToTreeData } from '@/utils'
 import { getDepartment } from '@/api/department'
-import { getEmployeeList } from '@/api/employee'
+import { getEmployeeList, exportEmployee } from '@/api/employee'
+import FileSaver from 'file-saver'
 
 export default {
   name: 'Employee',
@@ -132,6 +133,11 @@ export default {
         this.queryParams.page = 1
         this.getEmployeeList()
       }, 300)
+    },
+
+    async exportEmployee() {
+      const result = await exportEmployee()
+      FileSaver.saveAs(result, '员工信息表.xlsx')
     }
   }
 }
