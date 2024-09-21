@@ -205,6 +205,7 @@ export default {
           margin-right: 4px;
         }
         .name {
+          margin-left: 5px;
           margin-right: 10px;
           font-size: 16px;
         }
