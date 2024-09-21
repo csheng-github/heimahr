@@ -4,6 +4,7 @@
     action=""
     :show-file-list="false"
     :before-upload="beforeAvatarUpload"
+    :http-request="uploadImage"
   >
     <img v-if="value" :src="value" class="avatar">
     <i v-else class="el-icon-plus avatar-uploader-icon" />
@@ -11,6 +12,8 @@
 </template>
 
 <script>
+import COS from 'cos-js-sdk-v5'
+
 export default {
   props: {
     value: {
@@ -31,6 +34,30 @@ export default {
       }
 
       return isJPG && isLt2M
+    },
+
+    /** 选择图片上传 */
+    uploadImage(params) {
+      const cos = new COS({
+        SecretId: 'xxx',
+        SecretKey: 'xxx'
+      })
+      cos.putObject(
+        {
+          Bucket: 'xxx',
+          Region: 'xxx',
+          Key: params.file.name,
+          StorageClass: 'STANDARD',
+          Body: params.file
+        },
+        (err, data) => {
+          if (data.statusCode === 200 && data.Location) {
+            this.$emit('input', 'http://' + data.Location)
+          } else {
+            this.$message.error(err.Message)
+          }
+        }
+      )
     }
   }
 }
