@@ -1,13 +1,6 @@
 import request from '@/utils/request'
 
-/** 获取员工列表 */
-export function getEmployeeList(params) {
-  return request({
-    url: '/sys/user',
-    params
-  })
-}
-
+// #region excel
 /** 导出员工excel */
 export function exportEmployee() {
   return request({
@@ -15,7 +8,6 @@ export function exportEmployee() {
     responseType: 'blob'
   })
 }
-
 /** 下载员工导入模版 */
 export function getExportTemplate() {
   return request({
@@ -23,7 +15,6 @@ export function getExportTemplate() {
     responseType: 'blob'
   })
 }
-
 /** 上传用户的excel */
 export function uploadExcel(data) {
   return request({
@@ -32,7 +23,16 @@ export function uploadExcel(data) {
     data
   })
 }
+// #endregion
 
+// #region 员工
+/** 获取员工列表 */
+export function getEmployeeList(params) {
+  return request({
+    url: '/sys/user',
+    params
+  })
+}
 /** 删除员工 */
 export function delEmployee(id) {
   return request({
@@ -40,7 +40,6 @@ export function delEmployee(id) {
     method: 'delete'
   })
 }
-
 /** 新增员工 */
 export function addEmployee(data) {
   return request({
@@ -49,14 +48,12 @@ export function addEmployee(data) {
     data
   })
 }
-
 /** 获取员工详情 */
 export function getEmployeeDetail(id) {
   return request({
     url: `/sys/user/${id}`
   })
 }
-
 /** 更新员工信息 */
 export function updateEmployee(data) {
   return request({
@@ -65,3 +62,21 @@ export function updateEmployee(data) {
     data
   })
 }
+// #endregion
+
+// #region 角色
+/** 获取可用的角色 */
+export function getEnableRoleList() {
+  return request({
+    url: '/sys/role/list/enabled'
+  })
+}
+/** 分配员工角色 */
+export function assignRole(data) {
+  return request({
+    url: '/sys/user/assignRoles',
+    method: 'put',
+    data
+  })
+}
+// #endregion
