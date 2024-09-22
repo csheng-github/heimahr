@@ -39,6 +39,9 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'https://heimahr.itheima.net'
+      },
+      '/prod-api': {
+        target: 'https://heimahr-t.itheima.net'
       }
     }
   },

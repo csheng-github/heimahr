@@ -4,7 +4,7 @@ import router from '@/router'
 import { Message } from 'element-ui'
 
 const service = axios.create({
-  baseURL: '/api',
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 10000
 })
 
