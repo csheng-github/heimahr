@@ -2,6 +2,7 @@ import layout from '@/layout'
 
 export default {
   path: '/permission',
+  name: 'permission',
   component: layout,
   children: [{
     path: '',

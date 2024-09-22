@@ -16,6 +16,17 @@ import '@/permission' // permission control
 
 Vue.use(ElementUI)
 
+// 按钮权限指令
+Vue.directive('permission', {
+  inserted(el, binding) {
+    const points = store.state.user.userInfo?.roles?.points || []
+    if (!points.includes(binding.value)) {
+      el.remove()
+    }
+  }
+
+})
+
 Vue.config.productionTip = false
 
 new Vue({
