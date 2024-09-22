@@ -29,7 +29,7 @@
     </el-dialog>
 
     <div class="app-container">
-      <el-button class="btn-add" size="mini" type="primary" @click="addPermission">添加权限</el-button>
+      <el-button class="btn-add" size="mini" type="primary" @click="addPermission(0, 1)">添加权限</el-button>
       <el-table default-expand-all :data="list" row-key="id">
         <el-table-column prop="name" label="名称" />
         <el-table-column prop="code" label="标识" />
