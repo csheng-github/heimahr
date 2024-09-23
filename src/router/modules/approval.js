@@ -5,8 +5,8 @@ export default {
   name: 'approval',
   component: layout,
   children: [{
-    path: '',
-    name: 'approval',
+    path: 'index',
+    name: 'approval-index',
     component: () => import('@/views/approval'),
     meta: {
       title: '审批',

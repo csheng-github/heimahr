@@ -6,8 +6,8 @@ export default {
   component: layout,
   children: [
     {
-      path: '',
-      name: 'employee',
+      path: 'index',
+      name: 'employee-index',
       component: () => import('@/views/employee'),
       meta: {
         title: '员工',
@@ -15,7 +15,7 @@ export default {
       }
     },
     {
-      path: '/employee/detail/:id?',
+      path: 'detail/:id?',
       component: () => import('@/views/employee/detail.vue'),
       hidden: true,
       meta: {

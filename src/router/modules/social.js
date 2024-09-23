@@ -5,8 +5,8 @@ export default {
   component: layout,
   name: 'social',
   children: [{
-    path: '',
-    name: 'social',
+    path: 'index',
+    name: 'social-index',
     component: () => import('@/views/social'),
     meta: {
       title: '社保',

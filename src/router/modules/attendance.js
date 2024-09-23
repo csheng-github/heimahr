@@ -5,8 +5,8 @@ export default {
   name: 'attendance',
   component: layout,
   children: [{
-    path: '',
-    name: 'attendance',
+    path: 'index',
+    name: 'attendance-index',
     component: () => import('@/views/attendance'),
     meta: {
       title: '考勤',

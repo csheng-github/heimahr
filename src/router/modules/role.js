@@ -5,8 +5,8 @@ export default {
   name: 'role',
   component: layout,
   children: [{
-    path: '',
-    name: 'role',
+    path: 'index',
+    name: 'role-index',
     component: () => import('@/views/role'),
     meta: {
       title: '角色',

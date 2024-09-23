@@ -5,8 +5,8 @@ export default {
   component: layout,
   name: 'salary',
   children: [{
-    path: '',
-    name: 'salary',
+    path: 'index',
+    name: 'salary-index',
     component: () => import('@/views/salary'),
     meta: {
       title: '工资',
