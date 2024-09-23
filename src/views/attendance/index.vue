@@ -426,7 +426,7 @@ export default {
       attendanceRecord: '',
       monthOfReport: '',
       centerDialogVisible: false,
-      tipsDialogVisible: true,
+      tipsDialogVisible: false,
       month: '',
       yearMonth: '',
       loading: false,
