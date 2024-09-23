@@ -4,8 +4,6 @@
     <div class="form">
       <h1>登录</h1>
       <el-card shadow="never" class="login-card">
-
-        <!--登录表单-->
         <el-form ref="form" :model="loginForm" :rules="loginRules">
           <el-form-item prop="mobile">
             <el-input v-model="loginForm.mobile" placeholder="请输入手机号" />
@@ -22,7 +20,6 @@
             <el-button style="width:350px" type="primary" @click="login">登录</el-button>
           </el-form-item>
         </el-form>
-
       </el-card>
     </div>
   </div>
