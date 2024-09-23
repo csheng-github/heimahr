@@ -155,13 +155,13 @@
 <script>
 import { getAttendancesList } from '@/api/attendance'
 import { getDepartment } from '@/api/department'
-import pageTools from './components/page-tools.vue'
+import PageTools from '@/components/PageTools'
 import AttendanceSet from './components/attendance-set.vue'
 
 export default {
   name: 'Attendances',
   components: {
-    pageTools,
+    PageTools,
     AttendanceSet
   },
   data() {

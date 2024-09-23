@@ -51,7 +51,7 @@
 
 <script>
 import { getSalaryDetail, getSettings } from '@/api/salary'
-import { getUserDetailById } from '@/api/user'
+import { getUserInfo } from '@/api/user'
 import { getHistorysData } from '@/api/social'
 import { getAtteArchiveDetail } from '@/api/attendance'
 
@@ -129,7 +129,7 @@ export default {
       this.socialData = await getHistorysData({ userId: this.userId, yearMonth: this.yearMonth })
     },
     async getUserDetailById() {
-      this.user = await getUserDetailById(this.userId)
+      this.user = await getUserInfo(this.userId)
     },
     calMoney(type, money, days) {
       if (type === 3) {

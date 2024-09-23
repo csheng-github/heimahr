@@ -57,13 +57,21 @@
 </template>
 
 <script>
-import { getUserDetailById } from '@/api/user'
+import { getUserInfo } from '@/api/user'
 import { changeSalary } from '@/api/salary'
 
 export default {
   name: 'UsersTableIndex',
-  props: ['userSalary', 'userId'],
-
+  props: {
+    userId: {
+      type: String,
+      default: ''
+    },
+    userSalary: {
+      type: Object,
+      default: () => {}
+    }
+  },
   data() {
     return {
       user: {},
@@ -115,7 +123,7 @@ export default {
       this.$emit('onDialogCancel')
     },
     async getUserDetailById() {
-      this.user = await getUserDetailById(this.userId)
+      this.user = await getUserInfo(this.userId)
     }
   }
 }

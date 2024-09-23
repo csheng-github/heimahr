@@ -66,10 +66,10 @@
 <script>
 import { getApprovalList } from '@/api/approval'
 // import ApprovalPageTool from './components/approval-tool'
-import pageTools from './components/page-tools.vue'
+import PageTools from '@/components/PageTools'
 export default {
   name: 'SocialTableIndex',
-  components: { pageTools },
+  components: { PageTools },
   data() {
     return {
       list: [],

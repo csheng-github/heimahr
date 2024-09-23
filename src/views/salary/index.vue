@@ -104,11 +104,11 @@ import { getTips, getSalaryDetail } from '@/api/salary'
 import { getDepartment } from '@/api/department'
 import ChangeSalary from './components/change-salary'
 import FixedSalary from './components/fixed-salary'
-import pageTools from './components/page-tools.vue'
+import PageTools from '@/components/PageTools'
 import { getEmployeeList } from '@/api/salary'
 export default {
   name: 'UsersTableIndex',
-  components: { ChangeSalary, FixedSalary, pageTools },
+  components: { ChangeSalary, FixedSalary, PageTools },
   data() {
     return {
       seeState: '',

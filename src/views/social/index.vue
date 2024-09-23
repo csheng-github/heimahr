@@ -53,11 +53,11 @@
 import { getSettings } from '@/api/social'
 import { getEmployeeList } from '@/api/salary'
 import SocialTool from './components/social-tool'
-import pageTools from './components/page-tools.vue'
+import PageTools from '@/components/PageTools'
 
 export default {
   name: 'SocialTableIndex',
-  components: { SocialTool, pageTools },
+  components: { SocialTool, PageTools },
   data() {
     return {
       list: [],
