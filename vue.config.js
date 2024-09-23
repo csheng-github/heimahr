@@ -48,7 +48,7 @@ module.exports = {
     }
   },
   chainWebpack(config) {
-    // 它可以提高首屏速度，建议开启预加载
+    // 提高首屏速度，建议开启预加载
     config.plugin('preload').tap(() => [
       {
         rel: 'preload',
