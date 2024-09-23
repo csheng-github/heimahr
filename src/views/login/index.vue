@@ -17,7 +17,7 @@
             </el-checkbox>
           </el-form-item>
           <el-form-item>
-            <el-button style="width:350px" type="primary" @click="login">登录</el-button>
+            <el-button :loading="loading" style="width:350px" type="primary" @click="login">登录</el-button>
           </el-form-item>
         </el-form>
       </el-card>
@@ -48,15 +48,30 @@ export default {
             value ? callback() : callback(new Error('您必须勾选用户的使用协议'))
           }
         }]
-      }
+      },
+      loading: false,
+      redirect: undefined
+    }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        this.redirect = route.query && route.query.redirect
+      },
+      immediate: true
     }
   },
   methods: {
     login() {
       this.$refs.form.validate(async(isOK) => {
         if (isOK) {
+          this.loading = true
           await this.$store.dispatch('user/login', this.loginForm)
-          this.$router.push('/')
+          this.loading = false
+          this.$router.push({ path: this.redirect || '/' })
+        } else {
+          console.log('error submit!!')
+          return false
         }
       })
     }

@@ -27,7 +27,7 @@ router.beforeEach(async(to, _from, next) => {
     if (whiteList.includes(to.path)) {
       next()
     } else {
-      next('/login')
+      next(`/login?redirect=${to.path}`)
       nprogress.done()
     }
   }
