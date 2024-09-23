@@ -33,11 +33,6 @@ import approvalRouter from './modules/approval'
   }
  */
 
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- */
 export const constantRoutes = [
   {
     path: '/login',
@@ -63,7 +58,6 @@ export const constantRoutes = [
     }]
   }
 ]
-
 export const asyncRoutes = [
   departmentRouter,
   roleRouter,
@@ -83,10 +77,10 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+// https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  router.matcher = newRouter.matcher
 }
 
 export default router

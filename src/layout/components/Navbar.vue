@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <!-- 修改密码 弹窗 -->
+    <!-- 修改密码🪟 -->
     <el-dialog width="500px" title="修改密码" :visible.sync="showDialog" append-to-body @close="btnCancel">
       <el-form ref="passForm" label-width="120px" :model="passForm" :rules="rules">
         <el-form-item label="旧密码" prop="oldPassword">
@@ -34,10 +34,10 @@
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
             <el-dropdown-item>
-              Home
+              首页
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" @click.prevent="updatePassword">
+          <a target="_blank" @click.prevent="showDialog = true">
             <el-dropdown-item>修改密码</el-dropdown-item>
           </a>
           <el-dropdown-item @click.native="logout">
@@ -70,22 +70,28 @@ export default {
       },
       rules: {
         oldPassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
-        newPassword: [{ required: true, message: '新密码不能为空', trigger: 'blur' }, {
-          trigger: 'blur',
-          min: 6,
-          max: 16,
-          message: '新密码的长度为6-16位之间'
-        }],
-        confirmPassword: [{ required: true, message: '重复密码不能为空', trigger: 'blur' }, {
-          trigger: 'blur',
-          validator: (_rule, value, callback) => {
-            if (this.passForm.newPassword === value) {
-              callback()
-            } else {
-              callback(new Error('重复密码和新密码输入不一致'))
+        newPassword: [
+          { required: true, message: '新密码不能为空', trigger: 'blur' },
+          {
+            trigger: 'blur',
+            min: 6,
+            max: 16,
+            message: '新密码的长度为6-16位之间'
+          }
+        ],
+        confirmPassword: [
+          { required: true, message: '重复密码不能为空', trigger: 'blur' },
+          {
+            trigger: 'blur',
+            validator: (_rule, value, callback) => {
+              if (this.passForm.newPassword === value) {
+                callback()
+              } else {
+                callback(new Error('重复密码和新密码输入不一致'))
+              }
             }
           }
-        }]
+        ]
       }
     }
   },
@@ -101,11 +107,7 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
 
-    updatePassword() {
-      this.showDialog = true
-    },
-
-    // 确定
+    // #region 提交/取消
     btnOK() {
       this.$refs.passForm.validate(async isOK => {
         if (isOK) {
@@ -115,11 +117,11 @@ export default {
         }
       })
     },
-    // 取消
     btnCancel() {
       this.$refs.passForm.resetFields()
       this.showDialog = false
     },
+    // #endregion
 
     async logout() {
       await this.$store.dispatch('user/logout')

@@ -16,6 +16,8 @@ import '@/permission' // permission control
 
 Vue.use(ElementUI)
 
+Vue.config.productionTip = false
+
 // 按钮权限指令
 Vue.directive('permission', {
   inserted(el, binding) {
@@ -26,8 +28,6 @@ Vue.directive('permission', {
   }
 
 })
-
-Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
