@@ -10,13 +10,15 @@ function resolve(dir) {
 const name = defaultSettings.title || 'vue Admin Template' // page title
 /** 端口号 */
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
+/** 环境变量 */
+const { NODE_ENV, VUE_APP_SERVER_PROXY } = process.env
 
 // https://cli.vuejs.org/zh/config/
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave: NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
     port,
@@ -26,11 +28,8 @@ module.exports = {
       errors: true
     },
     proxy: {
-      '/api': {
-        target: 'https://heimahr.itheima.net'
-      },
-      '/prod-api': {
-        target: 'https://heimahr-t.itheima.net'
+      NODE_ENV: {
+        target: VUE_APP_SERVER_PROXY
       }
     }
   },
