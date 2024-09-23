@@ -1,11 +1,29 @@
 <template>
   <div v-loading="loading" class="dashboard-container">
+    <!-- 出席设置🪟 -->
+    <attendance-set ref="set" @handleCloseModal="handleCloseModal" />
+
+    <!-- 提醒🪟 -->
+    <el-dialog
+      title="提醒"
+      :visible.sync="tipsDialogVisible"
+      width="280px"
+      center
+    >
+      <div class="attenInfo">
+        <p>系统将通过邮件与短信的形式，对全体员工中存在旷工的考勤进行提醒，该提醒每月仅可发送 1 次。</p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="handleSub">我知道了</el-button>
+        <el-button @click="centerDialogVisible = false">取消</el-button>
+      </span>
+    </el-dialog>
+
     <div class="app-container">
       <!-- 工具栏 -->
-      <page-tools :show-before="true">
-        <!-- 前面内容 -->
-        <template v-slot:before>有 {{ attendInfo.tobeTaskCount }} 条考勤审批尚未处理</template>
-        <template>
+      <page-tools show-before>
+        <template #before>有 {{ attendInfo.tobeTaskCount }} 条考勤审批尚未处理</template>
+        <template #after>
           <el-button size="mini" type="danger" @click="$router.push('/import?type=attendance')">导入</el-button>
           <el-button size="mini" type="warning">提醒</el-button>
           <el-button size="mini" type="primary" @click="handleSet">设置</el-button>
@@ -13,12 +31,14 @@
           <el-button size="mini" type="primary" @click="$router.push({'path':'/attendances/report/'+ yearMonth})">{{ yearMonth }}报表</el-button>
         </template>
       </page-tools>
+
+      <!-- 筛选栏 -->
       <el-card class="hr-block">
         <el-form ref="formData" :model="formData" label-width="120px" class="formInfo">
           <el-form-item label="部门:">
             <el-checkbox-group v-model="formData.deptID">
               <el-checkbox
-                v-for="item in departments"
+                v-for="item in departmnts"
                 :key="item.id"
                 :label="item.name"
               >
@@ -40,9 +60,9 @@
           </el-form-item>
         </el-form>
       </el-card>
+
       <!-- 考勤数据 -->
       <el-card class="hr-block">
-        <!-- 考勤列表 -->
         <div style="width:100%;position: relative;overflow-x: auto; overflow-y: hidden;">
           <div style="width: 3000px;">
             <table border="0" align="center" cellpadding="0" cellspacing="0" class="tableInfo">
@@ -129,34 +149,21 @@
         </el-row>
       </el-card>
     </div>
-    <el-card>
-      <!-- 提醒组件 -->
-      <el-dialog
-        title="提醒"
-        :visible.sync="tipsDialogVisible"
-        width="280px"
-        center
-      >
-        <div class="attenInfo">
-          <p>系统将通过邮件与短信的形式，对全体员工中存在旷工的考勤进行提醒，该提醒每月仅可发送 1 次。</p>
-        </div>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="handleSub">我知道了</el-button>
-          <el-button @click="centerDialogVisible = false">取消</el-button>
-        </span>
-      </el-dialog>
-      <!-- 设置组件 -->
-      <attendance-set ref="set" @handleCloseModal="handleCloseModal" /></el-card></div>
+  </div>
 </template>
 
 <script>
 import { getAttendancesList } from '@/api/attendance'
-import AttendanceSet from './components/attendance-set'
 import { getDepartment } from '@/api/department'
 import pageTools from './components/page-tools.vue'
+import AttendanceSet from './components/attendance-set.vue'
+
 export default {
   name: 'Attendances',
-  components: { AttendanceSet, pageTools },
+  components: {
+    pageTools,
+    AttendanceSet
+  },
   data() {
     return {
       list: [],
@@ -419,7 +426,7 @@ export default {
       attendanceRecord: '',
       monthOfReport: '',
       centerDialogVisible: false,
-      tipsDialogVisible: false,
+      tipsDialogVisible: true,
       month: '',
       yearMonth: '',
       loading: false,
