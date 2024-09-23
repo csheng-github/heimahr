@@ -13,6 +13,13 @@ const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 /** 环境变量 */
 const { NODE_ENV, VUE_APP_BASE_API, VUE_APP_SERVER_PROXY } = process.env
 
+/** 打印环境变量（控制台） */
+console.info()
+console.info('\x1b[33m%s\x1b[0m', `🏭--NODE环境(NODE_ENV):`, NODE_ENV)
+console.info('\x1b[36m%s\x1b[0m', `🔗--APP基础URL(VUE_APP_BASE_API):`, VUE_APP_BASE_API)
+console.info('\x1b[36m%s\x1b[0m', `😈--APP代理URL(VUE_APP_SERVER_PROXY):`, VUE_APP_SERVER_PROXY)
+console.info()
+
 // https://cli.vuejs.org/zh/config/
 module.exports = {
   publicPath: '/',
