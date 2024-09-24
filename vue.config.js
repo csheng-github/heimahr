@@ -10,7 +10,7 @@ function resolve(dir) {
 const name = defaultSettings.title || 'vue Admin Template' // page title
 /** 端口号 */
 const port = process.env.port || process.env.npm_config_port || 9528 // dev port
-/** 环境变量 */
+/* 环境变量 */
 const { NODE_ENV, VUE_APP_BASE_API, VUE_APP_SERVER_PROXY } = process.env
 
 /** 打印环境变量（控制台） */
