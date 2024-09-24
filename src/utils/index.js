@@ -116,6 +116,15 @@ export function param2Obj(url) {
   return obj
 }
 
+/**
+ * 将传入的URL的协议从 'http:' 替换为当前页面的协议。
+ * @param {string} url - 需要替换协议的原始URL。
+ * @returns {string} 替换后的URL。
+ */
+export function httpsReplace(url) {
+  return url.replace('http:', window.location.protocol)
+}
+
 /** 列表型数据转化树形 */
 export function transListToTreeData(list, rootValue) {
   const arr = []

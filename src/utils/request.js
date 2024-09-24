@@ -2,9 +2,10 @@ import axios from 'axios'
 import store from '@/store'
 import router from '@/router'
 import { Message } from 'element-ui'
+import { httpsReplace } from '@/utils'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: httpsReplace(process.env.VUE_APP_BASE_API),
   timeout: 10000
 })
 
