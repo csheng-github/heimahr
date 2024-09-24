@@ -1,12 +1,14 @@
 <template>
   <el-card class="page-tools">
     <el-row type="flex" justify="space-between" align="middle">
+      <!-- 左：信息栏 -->
       <el-col>
         <div v-if="showBefore" class="before">
           <i class="el-icon-info" />
           <slot name="before" />
         </div>
       </el-col>
+      <!-- 右：按钮组 -->
       <el-col>
         <el-row type="flex" justify="end">
           <slot name="after" />

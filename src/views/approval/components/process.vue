@@ -47,14 +47,14 @@
         <el-button @click="dialogFormVisible = false">取消</el-button>
       </div>
     </el-dialog>
-
   </div>
 </template>
 
 <script>
 import { getManagerList } from '@/api/department'
-import { process } from '@/api/approvals'
-import commonApi from '@/api/constant/approvals'
+import { process } from '@/api/approval'
+import commonApi from '@/api/constant/approval'
+
 export default {
   name: 'Setting',
   props: ['setData'],

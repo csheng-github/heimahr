@@ -3,14 +3,16 @@
     <div class="app-container">
       <!-- 工具栏 -->
       <page-tools :show-before="true">
-        <!-- 前面内容 -->
         <template #before>当前审批中 0 本月审批通过 1 本月审批驳回 0</template>
-        <template>
+        <template #after>
           <el-button size="mini" type="primary" @click="$router.push('/approvals/securitySetting')">流程设置</el-button>
         </template>
       </page-tools>
-      <!-- <ApprovalPageTool /> -->
+
+      <ApprovalPageTool />
+
       <el-card class="hr-block">
+        <!-- 表格 -->
         <el-table :data="list" style="width: 100%" :default-sort="{prop: 'date', order: 'descending'}">
           <el-table-column type="selection" width="30" />
           <el-table-column type="index" width="80" label="序号" />
@@ -41,15 +43,15 @@
               </span>
             </template>
           </el-table-column>
-          <!-- <el-table-column label="操作" width="100">
+          <el-table-column label="操作" width="100">
             <template slot-scope="scope">
               <el-button type="text" size="mini" @click="toDetail(scope.row)">
                 查看
               </el-button>
             </template>
-          </el-table-column> -->
+          </el-table-column>
         </el-table>
-        <!-- 分页组件 -->
+        <!-- 分页 -->
         <el-row type="flex" align="middle" justify="center" style="height: 60px">
           <el-pagination
             :total="page.total"
@@ -65,11 +67,12 @@
 
 <script>
 import { getApprovalList } from '@/api/approval'
-// import ApprovalPageTool from './components/approval-tool'
+import ApprovalPageTool from './components/approval-tool'
 import PageTools from '@/components/PageTools'
+
 export default {
   name: 'SocialTableIndex',
-  components: { PageTools },
+  components: { PageTools, ApprovalPageTool },
   data() {
     return {
       list: [],
@@ -85,7 +88,6 @@ export default {
     this.getApprovalList()
   },
   methods: {
-    // 初始化数据
     async  getApprovalList() {
       this.loading = true
       const { rows, total } = await getApprovalList({ year: 2018, ...this.page })

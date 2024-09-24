@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { exportApprovals } from '@/api/approvals'
+import { exportApprovals } from '@/api/approval'
 import process from './process'
 export default {
   name: 'ApprovalPageTool',
