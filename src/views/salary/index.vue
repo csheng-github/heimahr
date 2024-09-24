@@ -3,8 +3,7 @@
     <div class="app-container">
       <!-- 工具栏 -->
       <page-tools :show-before="true">
-        <!-- 前面内容 -->
-        <template v-slot:before>{{ tipsInfo }}</template>
+        <template #before>{{ tipsInfo }}</template>
         <template>
           <el-button size="mini" type="danger" @click="$router.push('/salarys/setting')">设置</el-button>
           <el-button size="mini" type="primary" @click="$router.push(`/salarys/monthStatement?yearMonth=${yearMonth}`)">{{ yearMonth }}报表</el-button>

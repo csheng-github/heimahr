@@ -3,7 +3,7 @@
     <div class="app-container">
       <!-- 工具栏 -->
       <page-tools show-before>
-        <template v-slot:before>
+        <template #before>
           本月{{ tips.dateRange || '0' }}：社保在缴 {{ tips.socialSecurityCount || '0' }} 公积金在缴 {{ tips.providentFundCount || '0' }} 增员 {{ tips.newsCount || '0' }} 减员 {{ tips.reducesCount || '0' }} 入职 {{ tips.worksCount || '0' }} 离职 {{ tips.leavesCount || '0' }}
         </template>
         <template>
@@ -30,7 +30,7 @@
           <el-table-column :formatter="getBase" prop="socialSecurityBase" label="社保基数" />
           <el-table-column :formatter="getBase" prop="providentFundBase" label="公积金基数" />
           <!-- <el-table-column label="操作">
-            <template v-slot:default="obj">
+            <template #default="obj">
               <el-button type="text" size="mini" @click="$router.push(`/social_securitys/detail/${obj.row.id}`)">查看详情</el-button>
             </template>
           </el-table-column> -->
