@@ -9,20 +9,20 @@ const state = {
 }
 
 const mutations = {
-  setToken(state, token) {
+  SET_TOKEN(state, token) {
     state.token = token
     setToken(token)
   },
-  removeToken(state) {
+  REMOVE_TOKEN(state) {
     state.token = null
     removeToken()
   },
 
-  setUserInfo(state, userInfo) {
+  SET_USER_INFO(state, userInfo) {
     state.userInfo = userInfo
   },
 
-  setRoutes(state, newRoutes) {
+  SET_ROUTES(state, newRoutes) {
     state.routes = [...constantRoutes, ...newRoutes]
   }
 }
@@ -30,18 +30,18 @@ const mutations = {
 const actions = {
   async login({ commit }, data) {
     const token = await login(data)
-    commit('setToken', token)
+    commit('SET_TOKEN', token)
   },
 
   async getUserInfo({ commit }) {
     const result = await getUserInfo()
-    commit('setUserInfo', result)
+    commit('SET_USER_INFO', result)
     return result
   },
 
   logout({ commit }) {
-    commit('removeToken')
-    commit('setUserInfo', {})
+    commit('REMOVE_TOKEN')
+    commit('SET_USER_INFO', {})
     resetRouter()
   }
 }

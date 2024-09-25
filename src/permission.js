@@ -20,7 +20,7 @@ router.beforeEach(async(to, _from, next) => {
       if (!store.getters.userId) {
         const { roles } = await store.dispatch('user/getUserInfo')
         const filterRoutes = asyncRoutes.filter(item => roles.menus.includes(item.name))
-        store.commit('user/setRoutes', filterRoutes)
+        store.commit('user/SET_ROUTES', filterRoutes)
         router.addRoutes([...filterRoutes, { path: '*', redirect: '/404', hidden: true }])
         next(to.path)
       } else {
